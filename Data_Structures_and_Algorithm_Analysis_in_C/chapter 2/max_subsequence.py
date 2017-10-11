@@ -69,12 +69,8 @@ def best(l):
 
 
 if __name__ == "__main__":
-    import timeit
-    from functools import partial
+    from utils import profile
     test_arg = [1, 2, 3, 4, -1, 5, -2, 8] * 100
-
-    def profile(func, *args, **kwargs):
-        return timeit.Timer(partial(func, *args, **kwargs)).timeit(1)
     print profile(loops, test_arg)
     print profile(better_loops, test_arg)
     print profile(divide_and_conquer, test_arg, 0, len(test_arg) - 1)
