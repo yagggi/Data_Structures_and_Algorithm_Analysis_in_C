@@ -3,9 +3,10 @@
 
 class SingleLinkedList(object):
 
-    def __init__(self, next_node=None, value=None):
+    def __init__(self, next_node=None, **kwargs):
         self.next = next_node
-        self.value = value
+        for k, v in kwargs:
+            setattr(self, k, v)
 
     def is_last(self):
         return self.next is None
@@ -47,10 +48,11 @@ class SingleLinkedList(object):
 
 class DoublyLinkedList(object):
 
-    def __init__(self, next_node=None, prev_node=None, value=None):
+    def __init__(self, next_node=None, prev_node=None, **kwargs):
         self.next = next_node
         self.prev = prev_node
-        self.value = value
+        for k, v in kwargs:
+            setattr(self, k, v)
 
     def is_last(self):
         return self.next is None
