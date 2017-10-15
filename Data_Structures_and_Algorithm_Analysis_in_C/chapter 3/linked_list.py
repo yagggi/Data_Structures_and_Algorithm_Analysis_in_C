@@ -48,10 +48,17 @@ class SinglyLinkedList(object):
     @staticmethod
     def print_list(head):
         node = head.next
+        ans = []
         while node is not None:
+            d = {}
             for k, v in node.__dict__.items():
-                print '%s: %s' % (k, v)
+                if k == 'next':
+                    continue
+                d[k] = v
+            ans.append(d)
             node = node.next
+        print ans
+        return ans
 
 
 class DoublyLinkedList(object):
@@ -145,7 +152,6 @@ class Polynomial(object):
         while node2 is not None:
             start = node1
             while start is not None:
-                print start.coefficient
                 ans.next = SinglyLinkedList(coefficient=start.coefficient * node2.coefficient,
                                             exponent=start.exponent + node2.exponent)
                 ans = ans.next
@@ -165,3 +171,66 @@ class Polynomial(object):
                 position.coefficient += node.coefficient
             node = node.next
         return head
+
+
+class RadixSort(object):
+
+    def __init__(self, nums):
+        self.bucket = SinglyLinkedList()
+        self.length = len(nums)
+        bucket = self.bucket
+        for i in range(10):
+            bucket.next = SinglyLinkedList(values=[], num=i)
+            bucket = bucket.next
+        for num in nums:
+            position = SinglyLinkedList.find(num % 10, self.bucket, 'num')
+            position.values.append(num)
+
+    @staticmethod
+    def get_num(num, digit):
+        return (num / (10 ** digit)) % 10
+
+    @staticmethod
+    def put_num_into_bucket(bucket, num, digit):
+        while getattr(bucket, 'num') != digit:
+            bucket = bucket.next
+            continue
+        bucket.values.append(num)
+
+    @staticmethod
+    def pop_num_out_bucket(bucket, num):
+        temp_bucket = []
+        for i in bucket.values[::-1]:
+            if i != num:
+                temp_bucket.append(bucket.values.pop())
+                continue
+            else:
+                res = bucket.values.pop()
+                bucket.values += temp_bucket[::-1]
+                return res
+
+    def sort(self):
+        digit = 1
+        while len(self.bucket.next.values) != self.length:
+            bucket = self.bucket.next
+            while bucket:
+                for num in bucket.values[::-1]:
+                    expected_digit = RadixSort.get_num(num, digit)
+                    if expected_digit != bucket.num:
+                        RadixSort.pop_num_out_bucket(bucket, num)
+                        RadixSort.put_num_into_bucket(self.bucket.next, num, expected_digit)
+                bucket = bucket.next
+            digit += 1
+        return self.bucket.next.values
+
+
+if __name__ == "__main__":
+    a = Polynomial(polynomial=[[10, 1000], [5, 14], [1, 0]])
+    b = Polynomial(polynomial=[[3, 1990], [-2, 1492], [11, 0], [5, 0]])
+    head = Polynomial.add_polynomial(a, b)
+    SinglyLinkedList.print_list(head)
+    head = Polynomial.mult_polynomial(a, b)
+    SinglyLinkedList.print_list(head)
+
+    r = RadixSort(nums=[0, 1, 512, 343, 64, 125, 216, 27, 8, 729])
+    print r.sort()
