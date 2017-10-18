@@ -38,6 +38,87 @@ class ArrayStack(object):
     def top(self):
         return self.stack[self.top_index]
 
+    def is_empty(self):
+        return self.stack == []
+
+
+class ReversePolish(object):
+
+    def __init__(self, postfix):
+        self.args = list(postfix)
+        self.stack = ArrayStack()
+        self.operators = ['+', '-', '*', '/']
+
+    def is_operator(self, x):
+        return x in self.operators
+
+    def cal(self):
+        for x in self.args:
+            if self.is_operator(x):
+                a = self.stack.pop()
+                b = self.stack.pop()
+                res = eval('%s%s%s' % (b, x, a))
+                self.stack.push(res)
+            else:
+                try:
+                    x = int(x)
+                except ValueError:
+                    raise
+                self.stack.push(x)
+        return self.stack.top()
+
+
+class InfixToPostfix(object):
+
+    def __init__(self, infix):
+        from collections import defaultdict
+        self.infix = list(infix)
+        self.allow_operators = ['+', '*', '(', ')']
+        self.postfix = []
+        self.priority_dic = defaultdict(lambda: 4)
+        self.priority_dic.update(
+            {
+                '+': 1,
+                '*': 2,
+                '(': 3,
+            }
+        )
+
+    def get_priority(self, x):
+        return self.priority_dic[x]
+
+    def is_number(self, x):
+        return x not in self.allow_operators
+
+    def to_postfix(self, helper=None, index=0):
+        if not helper:
+            helper = ArrayStack()
+        try:
+            x = self.infix[index]
+        except Exception:
+            while not helper.is_empty():
+                self.postfix.append(helper.pop())
+                return
+
+        if self.is_number(x):
+            self.postfix.append(x)
+        elif x == ')':
+            poped = helper.pop()
+            while poped != '(':
+                self.postfix.append(poped)
+                poped = helper.pop()
+        else:
+            while (not helper.is_empty() and
+                   self.get_priority(helper.top()) >= self.get_priority(x) and
+                   helper.top() != '('):
+                self.postfix.append(helper.pop())
+            helper.push(x)
+        self.to_postfix(helper=helper, index=index + 1)
+
+    def trans(self):
+        self.to_postfix()
+        return ''.join(self.postfix)
+
 
 if __name__ == "__main__":
     print '---ListStack---'
@@ -48,6 +129,7 @@ if __name__ == "__main__":
     ListStack.pop(s)
     SinglyLinkedList.print_list(s)
     print ListStack.top(s)
+
     print '---ArrayStack---'
     s2 = ArrayStack()
     s2.push(1)
@@ -56,3 +138,15 @@ if __name__ == "__main__":
     s2.pop()
     print s2.stack
     print s2.top()
+
+    print '---ReversePolish---'
+    postfix = '6523+8*+3+*'
+    r = ReversePolish(postfix)
+    print 'postfix: %s' % postfix
+    print 'res: %s' % r.cal()
+
+    print '---InfixToPostfix---'
+    args = 'a+b*c+(d*e+f)*g'
+    infix = InfixToPostfix('a+b*c+(d*e+f)*g')
+    print 'infix: %s' % args
+    print 'postfix: %s' % infix.trans()
