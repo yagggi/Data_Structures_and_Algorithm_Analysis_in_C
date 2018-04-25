@@ -1,5 +1,5 @@
 # coding: utf-8
-from linked_list import SinglyLinkedList
+from .linked_list import SinglyLinkedList
 
 
 class ListStack(SinglyLinkedList):
@@ -21,7 +21,7 @@ class ListStack(SinglyLinkedList):
         return stack.next.value
 
 
-class ArrayStack(object):
+class ArrayStack:
 
     def __init__(self):
         self.stack = []
@@ -42,7 +42,7 @@ class ArrayStack(object):
         return self.stack == []
 
 
-class ReversePolish(object):
+class ReversePolish:
 
     def __init__(self, postfix):
         self.args = list(postfix)
@@ -68,7 +68,7 @@ class ReversePolish(object):
         return self.stack.top()
 
 
-class InfixToPostfix(object):
+class InfixToPostfix:
 
     def __init__(self, infix):
         from collections import defaultdict
@@ -121,32 +121,32 @@ class InfixToPostfix(object):
 
 
 if __name__ == "__main__":
-    print '---ListStack---'
+    print('---ListStack---')
     s = ListStack()
     ListStack.push(1, s)
     ListStack.push(2, s)
     SinglyLinkedList.print_list(s)
     ListStack.pop(s)
     SinglyLinkedList.print_list(s)
-    print ListStack.top(s)
+    print(ListStack.top(s))
 
-    print '---ArrayStack---'
+    print('---ArrayStack---')
     s2 = ArrayStack()
     s2.push(1)
     s2.push(2)
-    print s2.stack
+    print(s2.stack)
     s2.pop()
-    print s2.stack
-    print s2.top()
+    print(s2.stack)
+    print(s2.top())
 
-    print '---ReversePolish---'
+    print('---ReversePolish---')
     postfix = '6523+8*+3+*'
     r = ReversePolish(postfix)
-    print 'postfix: %s' % postfix
-    print 'res: %s' % r.cal()
+    print('postfix: %s' % postfix)
+    print('res: %s' % r.cal())
 
-    print '---InfixToPostfix---'
+    print('---InfixToPostfix---')
     args = 'a+b*c+(d*e+f)*g'
     infix = InfixToPostfix('a+b*c+(d*e+f)*g')
-    print 'infix: %s' % args
-    print 'postfix: %s' % infix.trans()
+    print('infix: %s' % args)
+    print('postfix: %s' % infix.trans())

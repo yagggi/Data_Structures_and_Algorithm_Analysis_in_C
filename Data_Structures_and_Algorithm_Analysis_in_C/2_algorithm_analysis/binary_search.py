@@ -23,7 +23,7 @@ def binary_search(l, x):
 
 if __name__ == "__main__":
     import random
-    from utils import profile
+    from ..utils import profile
     test_list = range(1000000)
     x = random.randint(0, 1000000)
-    print profile(binary_search, test_list, x)
+    print(profile(binary_search, test_list, x))

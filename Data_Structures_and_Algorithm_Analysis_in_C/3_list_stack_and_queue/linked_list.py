@@ -1,7 +1,7 @@
 # coding: utf-8
 
 
-class SinglyLinkedList(object):
+class SinglyLinkedList:
 
     def __init__(self, next_node=None, **kwargs):
         self.next = next_node
@@ -30,7 +30,6 @@ class SinglyLinkedList(object):
         import gc
 
         prev_node = SinglyLinkedList.find_prev(ele, head)
-        temp_node = SinglyLinkedList()
         temp_node = prev_node.next
         prev_node.next = temp_node.next
         del temp_node
@@ -38,7 +37,7 @@ class SinglyLinkedList(object):
         return
 
     @staticmethod
-    def insert(ele, head, position):
+    def insert(ele, position):
         temp_node = SinglyLinkedList()
         temp_node.next = position.next
         temp_node.value = ele
@@ -57,11 +56,11 @@ class SinglyLinkedList(object):
                 d[k] = v
             ans.append(d)
             node = node.next
-        print ans
+        print(ans)
         return ans
 
 
-class DoublyLinkedList(object):
+class DoublyLinkedList:
 
     def __init__(self, next_node=None, prev_node=None, **kwargs):
         self.next = next_node
@@ -233,4 +232,4 @@ if __name__ == "__main__":
     SinglyLinkedList.print_list(head)
 
     r = RadixSort(nums=[0, 1, 512, 343, 64, 125, 216, 27, 8, 729])
-    print r.sort()
+    print(r.sort())

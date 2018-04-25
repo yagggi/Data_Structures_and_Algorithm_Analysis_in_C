@@ -19,7 +19,7 @@ def rapid_pow(x, n):
 
 
 if __name__ == "__main__":
-    from utils import profile
+    from ..utils import profile
     import random
 
     test_arg = random.randint(20, 30)
@@ -28,5 +28,5 @@ if __name__ == "__main__":
         for _ in range(n):
             x = x * x
         return x
-    print profile(rapid_pow, 2, test_arg)
-    print profile(normal_pow, 2, test_arg)
+    print(profile(rapid_pow, 2, test_arg))
+    print(profile(normal_pow, 2, test_arg))
