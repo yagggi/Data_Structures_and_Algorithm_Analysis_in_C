@@ -5,7 +5,7 @@ def rapid_pow(x, n):
     """
     :type x: int.
 
-    :type n: int
+    :type n: float
     :rtype: int
     """
     if n == 0:
