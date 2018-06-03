@@ -53,13 +53,24 @@ class BinarySearchTree:
         else:
             return depth
 
-    def verbose(self, depth=0, width=0, nodes=None):
-        if not width:
-            max_depth = self.depth()
-            verbose_depth = 2 * max_depth + 1
-            width = 2 ** max_depth
-        if not nodes:
-            nodes = [self,]
+    def verbose(self, stack=None):
+        def add_to_stack(node, res):
+            if node.left:
+                res.append(node.left)
+            if node.right:
+                res.append(node.right)
+            return res
 
-        if depth == max_depth:
-            return
+        if stack is None:
+            print(self.value)
+            stack = add_to_stack(self, [])
+            self.verbose(stack)
+        else:
+            print(' '.join([str(x.value) for x in stack]))
+            new_stack = []
+            for node in stack:
+                new_stack = add_to_stack(node, new_stack)
+            if new_stack:
+                self.verbose(new_stack)
+            else:
+                return
