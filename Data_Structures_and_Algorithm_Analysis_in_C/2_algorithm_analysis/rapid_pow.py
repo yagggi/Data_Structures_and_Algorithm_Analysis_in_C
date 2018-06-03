@@ -1,4 +1,3 @@
-# coding: utf-8
 
 
 def rapid_pow(x, n):

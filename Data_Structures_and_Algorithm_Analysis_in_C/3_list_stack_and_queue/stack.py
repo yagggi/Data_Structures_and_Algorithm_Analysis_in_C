@@ -1,4 +1,3 @@
-# coding: utf-8
 from .linked_list import SinglyLinkedList
 
 
