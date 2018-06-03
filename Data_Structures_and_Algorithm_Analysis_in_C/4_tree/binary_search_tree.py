@@ -72,5 +72,28 @@ class BinarySearchTree:
                 new_stack = add_to_stack(node, new_stack)
             if new_stack:
                 self.verbose(new_stack)
-            else:
-                return
+
+    def delete(self, ele, pre=None, side=None):
+        if ele > self.value:
+            self.right.delete(ele, pre=self, side='right')
+            return self
+        elif ele < self.value:
+            self.left.delete(ele, pre=self, side='left')
+            return self
+        elif self.right and self.left:
+            tmp = self.right.find_min()
+            self.value = tmp.value
+            self.right.delete(self.value, pre=self, side='right')
+            return self
+        elif self.right is None:
+            if not pre:
+                return self.left
+            setattr(pre, side, self.left)
+            return pre
+        elif self.left is None:
+            if not pre:
+                return self.right
+            setattr(pre, side, self.right)
+            return pre
+
+
