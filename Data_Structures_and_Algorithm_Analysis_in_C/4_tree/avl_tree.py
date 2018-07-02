@@ -1,6 +1,7 @@
+from .binary_search_tree import BinarySearchTree
 
 
-class AVLTree:
+class AVLTree(BinarySearchTree):
 
     def __init__(self, value=None, right=None, left=None, hight=-1):
         self.value = value
