@@ -64,3 +64,25 @@ class SplayTree(BinarySearchTree):
     def right_double_rotate(node):
         node.right = SplayTree.left_single_rotate(node.right)
         return SplayTree.right_single_rotate(node)
+
+    @staticmethod
+    def find_max(node, nodes=[]):
+        if not node.right:
+            node = SplayTree.rotate(node, nodes)
+            return node
+        else:
+            nodes.append(node)
+            node = node.right
+            return SplayTree.find_max(node, nodes)
+
+    @staticmethod
+    def delete(root, x):
+        node = SplayTree.find(root, x)
+        if not node.left:
+            return node.right
+        elif not node.right:
+            return node.left
+        else:
+            left_max = SplayTree.find_max(root)
+            left_max.right = node.right
+            return left_max
