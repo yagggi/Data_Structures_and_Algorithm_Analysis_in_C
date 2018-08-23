@@ -3,7 +3,7 @@ from ..c3_list_stack_and_queue import SinglyLinkedList
 
 class SeparateChainingHash:
 
-    def __init__(self, table_size=100):
+    def __init__(self, table_size=101):
         self.size = table_size
         self.table = [None] * table_size
 
