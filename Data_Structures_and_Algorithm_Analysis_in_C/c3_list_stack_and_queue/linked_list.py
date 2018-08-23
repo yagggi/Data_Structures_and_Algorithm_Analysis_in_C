@@ -1,51 +1,51 @@
 
 
 class SinglyLinkedList:
+    next = None
 
-    def __init__(self, next_node=None, **kwargs):
+    def __init__(self, val, next_node=None):
         self.next = next_node
-        for k, v in kwargs.items():
-            setattr(self, k, v)
+        self.val = val
 
     def is_last(self):
         return self.next is None
 
-    @staticmethod
-    def find(ele, head, attr_name):
-        position = head.next
-        while position is not None and getattr(position, attr_name) != ele:
+    @classmethod
+    def find(cls, ele, attr_name):
+        position = cls.next
+        while position is not None and position.val != ele:
             position = position.next
         return position
 
-    @staticmethod
-    def find_prev(ele, head):
-        position = head
-        while position.next is not None and position.next.value != ele:
+    @classmethod
+    def find_prev(cls, ele):
+        position = cls
+        while position.next is not None and position.next.val != ele:
             position = position.next
         return position
 
-    @staticmethod
-    def delete(ele, head):
+    @classmethod
+    def delete(cls, ele):
         import gc
 
-        prev_node = SinglyLinkedList.find_prev(ele, head)
+        prev_node = SinglyLinkedList.find_prev(ele)
         temp_node = prev_node.next
         prev_node.next = temp_node.next
         del temp_node
         gc.collect()
         return
 
-    @staticmethod
-    def insert(ele, position):
+    @classmethod
+    def insert(cls, ele):
         temp_node = SinglyLinkedList()
-        temp_node.next = position.next
-        temp_node.value = ele
-        position.next = temp_node
+        temp_node.next = cls.next
+        temp_node.val = ele
+        cls.next = temp_node
         return
 
-    @staticmethod
-    def print_list(head):
-        node = head.next
+    @classmethod
+    def print_list(cls):
+        node = cls.next
         ans = []
         while node is not None:
             d = {}
