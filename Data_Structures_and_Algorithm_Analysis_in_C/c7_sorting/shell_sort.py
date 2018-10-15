@@ -6,6 +6,7 @@ class ShellSort:
         self.number = len(elements)
 
     def sort(self):
+        # using Shell sequence, yet not a good one
         inc = self.number
         while inc > 1:
             inc //= 2
@@ -14,11 +15,11 @@ class ShellSort:
                 j = i
                 while j >= inc:
                     if tmp < self.elements[j - inc]:
-                        self.elements[j], self.elements[j - inc] = self.elements[j - inc], self.elements[j]
+                        self.elements[j] = self.elements[j - inc]
                     else:
                         break
-                    j -= 1
-                # self.elements[j] = tmp
+                    j -= inc
+                self.elements[j] = tmp
         return self.elements
 
 
