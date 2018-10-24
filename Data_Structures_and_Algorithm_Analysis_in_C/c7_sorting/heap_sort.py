@@ -28,8 +28,8 @@ class MaxHeapForSort:
         if self.size <= 0:
             raise Exception('This heap is EMPTY!')
         max_ele = self.heap[1]
-        self.heap[1] = None
         last_ele = self.heap[self.size]
+        self.heap[1] = None
         self.heap[self.size] = max_ele
         self.size -= 1
         ind = 1
@@ -52,7 +52,7 @@ class MaxHeapForSort:
             self.insert(x)
         while self.size > 0:
             self.delete_max()
-        return list(filter(lambda ele: ele is not None, self.heap))
+        return self.heap[1:]
 
 
 if __name__ == "__main__":
