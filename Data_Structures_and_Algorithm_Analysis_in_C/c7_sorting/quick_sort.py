@@ -65,5 +65,5 @@ class QuickSort:
 
 
 if __name__ == "__main__":
-    s = QuickSort([int(x) for x in input().split()])
+    s = QuickSort([int(x) for x in input('Enter elements seperated by single space:\n').split()])
     print(s.sort())

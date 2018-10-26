@@ -24,5 +24,5 @@ class ShellSort:
 
 
 if __name__ == "__main__":
-    s = ShellSort([int(x) for x in input().split()])
+    s = ShellSort([int(x) for x in input().split('Enter elements seperated by single space:\n')])
     print(s.sort())

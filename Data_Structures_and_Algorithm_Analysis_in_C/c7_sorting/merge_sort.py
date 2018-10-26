@@ -31,5 +31,5 @@ class MergeSort:
 
 
 if __name__ == "__main__":
-    s = MergeSort([int(x) for x in input().split()])
+    s = MergeSort([int(x) for x in input('Enter elements seperated by single space:\n').split()])
     print(s.sort())
