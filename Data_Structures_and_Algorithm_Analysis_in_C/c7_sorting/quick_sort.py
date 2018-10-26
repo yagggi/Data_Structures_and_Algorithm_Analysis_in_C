@@ -28,8 +28,8 @@ class QuickSort:
         cutoff = 3
         if left + cutoff <= right:
             pivot = self.med3(elements, left, right)
-            i = left
-            j = right - 1
+            i = left + 1
+            j = right - 2
             while True:
                 while elements[i] < pivot:
                     i += 1
