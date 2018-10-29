@@ -100,5 +100,5 @@ class QuickSort:
 
 if __name__ == "__main__":
     s = QuickSort([int(x) for x in input('Enter elements seperated by single space:\n').split()])
-    kth = int(input('Enter the k-th smallest:\n'))
+    kth = int(input('Enter the k-th:\nk: '))
     print(s.sort(), f'\n{kth}-th smallest:{s.select(kth)}')
