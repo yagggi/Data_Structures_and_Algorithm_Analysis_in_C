@@ -14,6 +14,8 @@ class UnWeightedPath:
     For unweighted path length.
     """
     def __init__(self, graph: Graph, start: str, end: str):
+        from collections import deque
+        self.queue = deque()
         self.graph = graph
         self.table = {}
         for vertex in graph.vertices:
@@ -39,6 +41,21 @@ class UnWeightedPath:
                         )
         return self.table[self.end].d
 
+    def better_bfs(self):
+        self.queue.appendleft(self.start)
+        while self.queue:
+            vertex = self.queue.pop()
+            counter = self.table[vertex].d
+            for v in self.graph.neighbours[vertex]:
+                if self.table[v].d == inf:
+                    self.table[v] = make_value(
+                        False,
+                        counter + 1,
+                        vertex
+                    )
+                    self.queue.appendleft(v)
+        return self.table[self.end].d
+
 
 if __name__ == '__main__':
     g1 = {
@@ -52,3 +69,5 @@ if __name__ == '__main__':
     g1_class = Graph(g1)
     table = UnWeightedPath(g1_class, 'a', 'e')
     print(table.bfs())
+    table2 = UnWeightedPath(g1_class, 'a', 'e')
+    print(table2.better_bfs())
