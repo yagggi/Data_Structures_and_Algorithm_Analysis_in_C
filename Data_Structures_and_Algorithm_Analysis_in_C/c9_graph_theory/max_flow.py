@@ -103,7 +103,7 @@ class FlowPath(WeightedPath):
 
 class MaxFlow:
     """
-    Implementation of a simple max-flow algorithm
+    Implement of a simple max-flow algorithm
     """
     def __init__(self, graph: FlowGraph, start, end):
         self.start = start
@@ -123,7 +123,7 @@ class MaxFlow:
 
     def max_augmenting_ffa(self):
         """
-        Implementation of Ford-Fulkerson method based on max augmenting.
+        Implement of Ford-Fulkerson method based on max augmenting.
         :return: int
         """
         counter = 0
@@ -141,7 +141,7 @@ class MaxFlow:
 
     def ek(self):
         """
-        Implementation of Edmonds–Karp algorithm
+        Implement of Edmonds–Karp algorithm
         :return: int
         """
         counter = 0
