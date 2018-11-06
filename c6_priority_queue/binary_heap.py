@@ -24,7 +24,7 @@ class MinHeap:
     def delete_min(self):
         if self.size <= 0:
             raise Exception('This heap is EMPTY!')
-        min_ele = self.heap[1]
+        min_ele = self.heap[1].val
         self.heap[1] = None
         last_ele = self.heap[self.size]
         self.heap[self.size] = None

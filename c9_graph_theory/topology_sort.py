@@ -37,6 +37,15 @@ class NonOrientedGraph(Graph):
         return res
 
     @property
+    def non_duplicated_edges(self):
+        res = []
+        for k in self.graph:
+            for d in self.graph[k]:
+                if (k, d) not in res and (d, k) not in res:
+                    res.append((k, d))
+        return res
+
+    @property
     def neighbours(self):
         res = {vertex: set() for vertex in self.vertices}
         for start, end in self.edges:
