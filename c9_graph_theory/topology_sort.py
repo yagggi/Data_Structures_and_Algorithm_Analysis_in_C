@@ -30,8 +30,17 @@ class NonOrientedGraph(Graph):
         res = []
         for k in self.graph:
             for d in self.graph[k]:
-                if {k, d} not in res:
-                    res.append({k, d})
+                if (k, d) not in res:
+                    res.append((k, d))
+                if (d, k) not in res:
+                    res.append((d, k))
+        return res
+
+    @property
+    def neighbours(self):
+        res = {vertex: set() for vertex in self.vertices}
+        for start, end in self.edges:
+            res[start].add(end)
         return res
 
 
