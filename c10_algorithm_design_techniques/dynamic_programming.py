@@ -41,7 +41,7 @@ def better_eval(n):
 
 def even_better_eval(n):
     c = [0] * (n + 1)
-    c[0] = 1.0
+    answer = c[0] = 1.0
     for i in range(1, n + 1):
         pre = c[i - 1]
         answer = 2.0 * pre / i + i
