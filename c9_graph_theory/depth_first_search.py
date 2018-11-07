@@ -17,7 +17,7 @@ class DepthFirstSearchTree:
     def dfs(self, vertex=None):
         self.counter += 1
         if not vertex:
-            vertex = 'c'
+            vertex = self.graph.vertices[0]
         self.num[vertex] = self.counter
         self.known[vertex] = True
         for v in self.graph.neighbours[vertex]:
@@ -28,33 +28,48 @@ class DepthFirstSearchTree:
 
     def find_low(self, vertex=None):
         if not vertex:
-            vertex = 'c'
+            vertex = self.graph.vertices[0]
         self.low[vertex] = self.num[vertex]
+        cnt = 0
         for v in self.graph.neighbours[vertex]:
             if self.num[v] > self.num[vertex]:
                 self.find_low(v)
                 if self.low[v] >= self.num[vertex]:
+                    if self.num[vertex] == 1:
+                        if self.parent[v] == vertex:
+                            cnt += 1
+                        continue
                     self.arti_point.add(vertex)
                 self.low[vertex] = min(self.low[vertex], self.low[v])
             elif self.parent[vertex] != v:
                 self.low[vertex] = min(self.low[vertex], self.num[v])
+        if cnt > 1:
+            self.arti_point.add(vertex)
         return self.arti_point
 
     def dfs_and_find_low(self, vertex=None):
         if not vertex:
-            vertex = 'c'
+            vertex = self.graph.vertices[0]
         self.counter += 1
         self.known[vertex] = True
         self.low[vertex] = self.num[vertex] = self.counter
+        cnt = 0
         for v in self.graph.neighbours[vertex]:
             if not self.known[v]:
                 self.parent[v] = vertex
                 self.dfs_and_find_low(v)
                 if self.low[v] >= self.num[vertex]:
+                    cnt = 0
+                    if self.num[vertex] == 1:
+                        if self.parent[v] == vertex:
+                            cnt += 1
+                        continue
                     self.arti_point.add(vertex)
                 self.low[vertex] = min(self.low[vertex], self.low[v])
             elif self.parent.get(vertex) != v:
                 self.low[vertex] = min(self.low[vertex], self.num[v])
+        if cnt > 1:
+            self.arti_point.add(vertex)
         return self.arti_point
 
 
