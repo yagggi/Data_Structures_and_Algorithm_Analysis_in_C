@@ -1,4 +1,4 @@
-
+from c9_graph_theory.shortest_path_problem import WeightedGraph
 inf = float('inf')
 
 
@@ -101,6 +101,28 @@ class OptimalBuild:
         if right - left == 1:
             return self.words[left][1]
         return self.table[(left, right)]['perc']
+
+
+class DynamicPath:
+    def __init__(self, graph: WeightedGraph):
+        self.graph = graph
+        self.vertices = list(graph.vertices)
+        self.number = len(self.vertices)
+        self.table = [[None] * self.number] * self.number
+        self.shortest_table = [[None] * self.number] * self.number
+
+    def shortest_pairs(self, start, end):
+        for i in range(self.number):
+            for j in range(self.number):
+                self.shortest_table[i][j] = self.graph.distance(i, j)
+        for k in range(self.number):
+            for i in range(self.number):
+                for j in range(self.number):
+                    l = self.shortest_table[i][k] + self.shrotest_table[k][j]
+                    if l < self.shortest_table[i][j]:
+                        self.shortest_table[i][j] = l
+                        self.table[i][k] = k
+        return self.shortest_table[start][end]
 
 
 if __name__ == '__main__':
