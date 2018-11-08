@@ -1,4 +1,6 @@
 
+inf = float('inf')
+
 
 def fib(n):
     if n <= 1:
@@ -48,3 +50,69 @@ def even_better_eval(n):
         c[i] = pre + answer
     del c
     return answer
+
+
+class OptimalBuild:
+
+    def __init__(self, freq_dic):
+        self.freq_dic = freq_dic
+        self.words = sorted(list(freq_dic.items()), key=lambda x: x[0])
+        self.table = {}
+
+    def __cal_cost(self, words, left, right, cost):
+        total = 0
+        if left > right:
+            return 0
+        for ind in range(left, right + 1):
+            if ind > len(words) - 1:
+                break
+            total += words[ind][1] * cost
+
+    def optimal_cost(self):
+        """
+        :return:
+        """
+        words = self.words
+        length = len(words)
+        for width in range(1, length + 1):
+            for left in range(0, length - width):
+                min_perc = inf
+                mid = None
+                right = left + width + 1
+                sub_word = words[left: right]
+                total_p = sum([x[1] for x in sub_word])
+                for center_ind in range(left, right):
+                    left_perc = self.__cal_perc(left, center_ind)
+                    right_perc = self.__cal_perc(center_ind + 1, right)
+                    perc = left_perc + right_perc + total_p
+                    if perc < min_perc:
+                        min_perc = perc
+                        mid = self.words[center_ind][0]
+                self.table[(left, right)] = dict(
+                    perc=round(min_perc, 2),
+                    center=mid,
+                    sub_word=sub_word
+                )
+        return self.table
+
+    def __cal_perc(self, left, right):
+        if left >= right:
+            return 0
+        if right - left == 1:
+            return self.words[left][1]
+        return self.table[(left, right)]['perc']
+
+
+if __name__ == '__main__':
+    freq_dic = {
+        'a': 0.22,
+        'am': 0.18,
+        'and': 0.20,
+        'egg': 0.05,
+        'if': 0.25,
+        'the': 0.02,
+        'two': 0.08
+    }
+    p = OptimalBuild(freq_dic)
+    res = p.optimal_cost()[(0, len(freq_dic))]
+    print(res['perc'], res['center'])
