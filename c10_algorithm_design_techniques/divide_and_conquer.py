@@ -2,7 +2,7 @@
 inf = float('inf')
 
 
-class ClosetPoint:
+class ClosestPoint:
     def __init__(self, points):
         self.points = points
         self.xset = sorted(self.points, key=lambda x: x[0])
@@ -62,6 +62,6 @@ if __name__ == '__main__':
         (1, 0),
         (1, 4),
     ]
-    p = ClosetPoint(points)
+    p = ClosestPoint(points)
     print(p.closest())
 
