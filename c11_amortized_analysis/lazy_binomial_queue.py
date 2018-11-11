@@ -6,7 +6,7 @@ from c6_priority_queue.binomial_queue import BinomialQueue
 class LazyBinomialQueue(BinomialQueue):
 
     @staticmethod
-    def lazy_merge(q1: 'LazyBinomialQueue', q2: 'LazyBinomialQueue') -> 'LazeBinomialQueue':
+    def lazy_merge(q1: 'LazyBinomialQueue', q2: 'LazyBinomialQueue') -> 'LazyBinomialQueue':
         q1.size += q2.size
         q1.queue += q2.queue
         q2.queue = None
