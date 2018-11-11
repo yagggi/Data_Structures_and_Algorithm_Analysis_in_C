@@ -35,8 +35,8 @@ class BinomialQueue:
         i, j = 0, 1
         while j <= q1.size:
             j *= 2
-            t1 = q1[i]
-            t2 = q2[i]
+            t1 = q1.queue[i]
+            t2 = q2.queue[i]
             if not t1 and not t2 and not carry:
                 continue
             elif t1 and not t2 and not carry:
