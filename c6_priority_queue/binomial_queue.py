@@ -38,9 +38,9 @@ class BinomialQueue:
             t1 = q1.queue[i]
             t2 = q2.queue[i]
             if not t1 and not t2 and not carry:
-                continue
+                pass
             elif t1 and not t2 and not carry:
-                continue
+                pass
             elif t2 and not t1 and not carry:
                 q1.queue[i] = t2
                 q2.queue[i] = None
@@ -59,6 +59,7 @@ class BinomialQueue:
                 q1.queue[i] = carry
                 carry = BinomialQueue.combine(t1, t2)
                 q2.queue[i] = None
+            i += 1
         return q1
 
     @staticmethod
