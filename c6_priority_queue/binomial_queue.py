@@ -10,7 +10,7 @@ class BinomialNode:
 class BinomialQueue:
     def __init__(self, queue=None):
         self.__current_size = 0
-        self.queue = queue if queue else {}
+        self.queue = queue if queue else []
 
     @property
     def size(self):
@@ -64,7 +64,7 @@ class BinomialQueue:
 
     @staticmethod
     def insert(q: 'BinomialQueue', t: BinomialNode) -> 'BinomialQueue':
-        q2 = BinomialQueue(queue={0: t})
+        q2 = BinomialQueue(queue=[t])
         q2.size = 1
         return BinomialQueue.merge(q, q2)
 
@@ -72,9 +72,9 @@ class BinomialQueue:
     def delete_min(q: 'BinomialQueue') -> int:
         min_val = float('inf')
         min_node = min_i = None
-        for i in q.queue:
-            if q.queue[i].val < min_val:
-                min_node = q.queue[i]
+        for i, ele in enumerate(q.queue):
+            if ele.val < min_val:
+                min_node = ele
                 min_i = i
                 min_val = min_node.val
         deleted_val = min_node.val
@@ -84,7 +84,7 @@ class BinomialQueue:
         for j in range(min_i - 1, -1, -1):
             deleted_queue.queue[j] = deleted_tree
             deleted_tree = deleted_tree.next_sibling
-            deleted_queue[j].next_sibling = None
+            deleted_queue.queue[j].next_sibling = None
         q.queue[min_i] = None
         q.size -= deleted_queue.size + 1
         BinomialQueue.merge(q, deleted_queue)
