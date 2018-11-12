@@ -47,3 +47,24 @@ class TopDownSplayTree(SplayTree):
         node.left = header.left
         node.right = header.right
         return node
+
+    @staticmethod
+    def insert(val: int, node: TopDownSplayNode):
+        new_node = TopDownSplayNode(val)
+        if node is None:
+            node = new_node
+        else:
+            node = TopDownSplayTree.splay(val, node)
+            if val < node.val:
+                new_node.left = node.left
+                new_node.right = node
+                node.left = None
+                node = new_node
+            elif val > node.val:
+                new_node.right = node.right
+                new_node.left = node
+                node.right = None
+                node = new_node
+            else:
+                pass
+        return node
