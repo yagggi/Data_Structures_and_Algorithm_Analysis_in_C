@@ -1,4 +1,4 @@
-from ..c3_list_stack_and_queue import SinglyLinkedList
+from ..c03_list_stack_and_queue import SinglyLinkedList
 
 
 class SeparateChainingHash:

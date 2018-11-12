@@ -1,6 +1,6 @@
 import sys
 sys.path.append("..")
-from c6_priority_queue.binomial_queue import BinomialQueue
+from c06_priority_queue.binomial_queue import BinomialQueue
 
 
 class LazyBinomialQueue(BinomialQueue):

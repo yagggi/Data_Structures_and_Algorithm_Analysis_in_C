@@ -1,4 +1,4 @@
-from ..c4_tree import BinaryTree
+from ..c04_tree import BinaryTree
 
 
 class LeftistHeap(BinaryTree):

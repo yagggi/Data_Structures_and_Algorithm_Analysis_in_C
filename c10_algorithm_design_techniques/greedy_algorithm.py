@@ -1,6 +1,6 @@
 import sys
 sys.path.append("..")
-from c6_priority_queue.binary_heap import MinHeap
+from c06_priority_queue.binary_heap import MinHeap
 
 
 class HuffmanTree:

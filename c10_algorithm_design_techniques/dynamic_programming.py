@@ -1,4 +1,4 @@
-from c9_graph_theory.shortest_path_problem import WeightedGraph
+from c09_graph_theory.shortest_path_problem import WeightedGraph
 inf = float('inf')
 
 

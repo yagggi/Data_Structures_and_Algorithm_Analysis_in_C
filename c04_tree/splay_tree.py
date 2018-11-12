@@ -46,12 +46,14 @@ class SplayTree(BinarySearchTree):
     @staticmethod
     def left_single_rotate(node):
         left = node.left
+        node.left = left.right
         left.right = node
         return left
 
     @staticmethod
     def right_single_rotate(node):
         right = node.right
+        node.right = right.left
         right.left = node
         return right
 
