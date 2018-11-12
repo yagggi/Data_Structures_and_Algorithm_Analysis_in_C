@@ -68,3 +68,17 @@ class TopDownSplayTree(SplayTree):
             else:
                 pass
         return node
+
+    @staticmethod
+    def delete(val: int, node: TopDownSplayNode):
+        if node:
+            node = TopDownSplayTree.splay(val, node)
+            if node.value == val:
+                if node.left is None:
+                    new_node = node.right
+                else:
+                    new_node = node.left
+                    new_node = TopDownSplayTree.splay(val, new_node)
+                    new_node.right = node.right
+                node = new_node
+        return node
