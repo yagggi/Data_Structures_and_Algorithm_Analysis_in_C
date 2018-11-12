@@ -9,6 +9,12 @@ class RedBlackNode:
         self.left = left
         self.right = right
 
+    def min_child(self):
+        node = self
+        while node.left:
+            node = node.left
+        return node
+
 
 class RedBlackTree:
     def __init__(self):
