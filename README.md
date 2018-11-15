@@ -52,3 +52,4 @@ Implementation of ADT and algorithm in `<<Data Structures and Algorithm Analysis
     - [AA tree](https://github.com/fakepoet/Data_Structures_and_Algorithm_Analysis_in_C/blob/master/c12_advanced_data_structures_and_implementation/AA_tree.py)
     - [treap](https://github.com/fakepoet/Data_Structures_and_Algorithm_Analysis_in_C/blob/master/c12_advanced_data_structures_and_implementation/treap.py)
     - [k-d tree](https://github.com/fakepoet/Data_Structures_and_Algorithm_Analysis_in_C/blob/master/c12_advanced_data_structures_and_implementation/k-d_tree.py)
+    - [pairing heap](https://github.com/fakepoet/Data_Structures_and_Algorithm_Analysis_in_C/blob/master/c12_advanced_data_structures_and_implementation/pairing_heap.py)
