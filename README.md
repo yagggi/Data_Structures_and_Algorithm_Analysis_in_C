@@ -1,6 +1,6 @@
 # Data_Structures_and_Algorithm_Analysis_in_C
 
-Implementation of ADT and algorithms in `<<Data Structures and Algorithm Analysis in C (Second Edition)>>`
+Implementation of ADT and algorithms in `<Data Structures and Algorithm Analysis in C (Second Edition)>`
 
 # Index
 - [algorithm analysis](https://github.com/fakepoet/Data_Structures_and_Algorithm_Analysis_in_C/tree/master/c02_algorithm_analysis)
